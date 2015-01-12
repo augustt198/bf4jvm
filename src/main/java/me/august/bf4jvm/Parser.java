@@ -5,7 +5,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parser {
+public class Parser implements InstructionSource {
 
     private Reader reader;
 

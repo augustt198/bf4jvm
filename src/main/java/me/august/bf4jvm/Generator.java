@@ -12,12 +12,12 @@ public class Generator implements Opcodes {
     private static final String[] IMPLEMENT_RUNNABLE = {"java/lang/Runnable"};
     private static final String[] IOEXCEPTION        = {"java/io/IOException"};
 
-    private Parser parser;
+    private InstructionSource source;
     private int stackSize;
     private String className;
 
-    public Generator(Parser parser, int stackSize, String className) {
-        this.parser    = parser;
+    public Generator(InstructionSource source, int stackSize, String className) {
+        this.source = source;
         this.stackSize = stackSize;
         this.className = className;
     }
@@ -87,7 +87,7 @@ public class Generator implements Opcodes {
         while (true) {
             Instruction insn = null;
             try {
-                insn = parser.parse();
+                insn = source.parse();
             } catch (IOException ignored) {}
 
             if (insn == null) break;

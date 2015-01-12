@@ -18,8 +18,8 @@ public interface Instruction extends Opcodes {
     static final String INPUTSTREAM_INTERNAL_NAME   = "java/io/InputStream";
     static final String READ_INT_DESC               = "()I";
 
-    static final int ARRAY_VAR   = 1;
-    static final int POINTER_VAR = 2;
+    public static final int ARRAY_VAR   = 1;
+    public static final int POINTER_VAR = 2;
 
     public static final Instruction INCREMENT_DATA = (m) -> {
         m.visitVarInsn(ALOAD, ARRAY_VAR); // arr

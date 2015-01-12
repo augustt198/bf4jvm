@@ -13,7 +13,14 @@ public class Main {
         for (String arg : args) {
             String src = new String(Files.readAllBytes(Paths.get(arg)), StandardCharsets.UTF_8);
 
+            InstructionSource source;
             Parser parser  = new Parser(new StringReader(src));
+
+            if (Boolean.parseBoolean(System.getProperty("optimize", "false"))) {
+                source = new Optimizer(parser);
+            } else {
+                source = parser;
+            }
 
             int idx = arg.replace("\\", "/").lastIndexOf('/');
             String name = idx >= 0 ? arg.substring(idx + 1) : arg;
@@ -21,7 +28,7 @@ public class Main {
 
             String newName = arg.substring(0, arg.lastIndexOf('.')) + ".class";
 
-            Generator gen  = new Generator(parser, stackSize, name);
+            Generator gen  = new Generator(source, stackSize, name);
 
             Files.write(Paths.get(newName), gen.generate());
         }
