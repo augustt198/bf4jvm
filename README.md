@@ -2,6 +2,11 @@
 
 Brainf#@k for the JVM.
 
+### Options
+
+- `-Dstacksize=xxx` - sets the stack size (number of cells)
+- `-Doptimize=true` - enables optimization
+
 ### Hello World!
 
 Input:
